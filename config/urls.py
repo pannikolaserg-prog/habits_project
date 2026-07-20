@@ -10,7 +10,7 @@ def home(request):
 
 
 urlpatterns = [
-    path('', home),
+    path('', home, name='home'),
     path("admin/", admin.site.urls),
     path("api/", include("habits.urls")),
     # JWT
