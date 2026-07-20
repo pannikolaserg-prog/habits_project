@@ -34,16 +34,18 @@ def send_telegram_notification(habit):
     if not token:
         return
 
-    message = (f"Напоминание о привычке:\n"
-               f"Действие: {habit.action}\n"
-               f"Место: {habit.place}\n"
-               f"Время: {habit.time}\n"
-               f"Длительность: {habit.duration} сек.")
+    message = (
+        f"Напоминание о привычке:\n"
+        f"Действие: {habit.action}\n"
+        f"Место: {habit.place}\n"
+        f"Время: {habit.time}\n"
+        f"Длительность: {habit.duration} сек."
+    )
 
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {
-        'chat_id': user.telegram_chat_id,
-        'text': message,
+        "chat_id": user.telegram_chat_id,
+        "text": message,
     }
     try:
         requests.post(url, data=payload, timeout=10)

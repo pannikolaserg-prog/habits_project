@@ -18,7 +18,7 @@ class HabitViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         # Пользователь видит свои привычки + публичные чужие (только для чтения)
         user = self.request.user
-        if self.action == 'list' and not self.request.query_params.get('public'):
+        if self.action == "list" and not self.request.query_params.get("public"):
             # список своих
             return Habit.objects.filter(user=user)
         return Habit.objects.all()
@@ -26,7 +26,7 @@ class HabitViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @action(detail=False, methods=['get'], url_path='public')
+    @action(detail=False, methods=["get"], url_path="public")
     def public_list(self, request):
         """Список публичных привычек"""
         habits = Habit.objects.filter(is_public=True)
