@@ -1,0 +1,10 @@
+Django>=4.2
+djangorestframework>=3.14
+djangorestframework-simplejwt>=5.3
+drf-spectacular>=0.26
+django-cors-headers>=4.1
+python-dotenv>=1.0
+psycopg2-binary>=2.9
+celery>=5.3
+redis>=5.0
+requests>=2.31
