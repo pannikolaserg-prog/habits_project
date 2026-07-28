@@ -46,7 +46,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [test, lint]
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/feature/curs-project'
     steps:
       - uses: actions/checkout@v3
       - name: Deploy to Server
@@ -57,10 +57,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /opt/habits_project
-            git pull origin main
-            source venv/bin/activate
-            pip install -r requirements.txt
-            python manage.py migrate
-            python manage.py collectstatic --noinput
-            sudo systemctl restart gunicorn
-            sudo systemctl restart nginx
+            git checkout feature/curs-project
+            git pull origin feature/curs-project
+            docker-compose down
+            docker-compose up -d --build
