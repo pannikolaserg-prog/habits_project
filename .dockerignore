@@ -1,0 +1,10 @@
+**
+!config
+!users
+!habits
+!telegram
+!manage.py
+!poetry.lock
+!pyproject.toml
+!requirements.txt
+!docker-entrypoint.sh
